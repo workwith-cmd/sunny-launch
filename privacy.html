@@ -25,7 +25,7 @@
   <section class="legal">
     <div class="legal-inner">
       <h1>Privacy Policy</h1>
-      <p class="last-updated">Last Updated: April 3, 2026</p>
+      <p class="last-updated">Last Updated: May 11, 2026</p>
 
       <p>AY Consulting dba Sunny Launch ("we," "us," or "our") is committed to protecting your privacy. This Privacy Policy describes how we collect, use, store, and share your personal information when you use our technology-enabled coordination and productivity services, our website, and related features (collectively, the "Services").</p>
 
@@ -43,6 +43,7 @@
       <h3>Information from Third-Party Services</h3>
       <ul>
         <li><strong>Google Calendar data:</strong> When you connect your Google Calendar account, we access your calendar events (including event titles, times, locations, and attendee information) to detect changes and, with your explicit confirmation, write entries to your calendar. We request read and write access to your calendar events. We do not access other Google account data beyond calendar events.</li>
+        <li><strong>Apple Calendar (iCloud) data:</strong> When you connect an Apple Calendar via app-specific password, we access events (titles, times, locations, descriptions) from the calendar you select. Read-only — we cannot modify or delete events on Apple-side. We do not access other Apple data (mail, contacts, photos, reminders).</li>
         <li><strong>SMS delivery data:</strong> When we send or receive SMS messages through our messaging provider, metadata such as delivery status, timestamps, and phone numbers is processed.</li>
       </ul>
 
@@ -82,6 +83,7 @@
         </thead>
         <tbody>
           <tr><td>Google (Calendar API)</td><td>Calendar integration</td><td>Calendar events (read/write with your authorization)</td></tr>
+          <tr><td>Apple (iCloud / CalDAV)</td><td>Calendar integration</td><td>Calendar events from the calendar you select (read-only, app-specific password)</td></tr>
           <tr><td>Twilio</td><td>SMS messaging</td><td>Phone numbers, message content</td></tr>
           <tr><td>Anthropic</td><td>AI processing</td><td>Calendar data, relevant context (anonymized where possible)</td></tr>
           <tr><td>Email delivery provider</td><td>Notifications and summaries</td><td>Email address, email content</td></tr>
@@ -102,6 +104,7 @@
       <ul>
         <li>Encryption of data in transit (TLS/SSL) and at rest</li>
         <li>Secure storage of authentication tokens and credentials</li>
+        <li><strong>Apple iCloud app-specific passwords:</strong> stored in our database encrypted at rest using symmetric encryption (<code>pgcrypto</code>). The encryption key is held in our hosting environment, separate from the database, and is not accessible to our service providers</li>
         <li>Access controls limiting who can view personal data</li>
         <li>Regular review of security practices</li>
       </ul>
@@ -128,7 +131,18 @@
         <li>We limit human access to Google Calendar data to what is necessary for service operation, security, or legal compliance</li>
       </ul>
 
-      <h2>9. SMS/Messaging Disclosure</h2>
+      <h2>9. Apple Calendar (iCloud) — App-Specific Password Handling</h2>
+      <p>When you connect your Apple Calendar, you generate an app-specific password at <a href="https://appleid.apple.com">appleid.apple.com</a> and paste it into our setup flow. Specifics:</p>
+      <ul>
+        <li>The password lets us read events from one Apple calendar you select. It cannot read your email, contacts, photos, reminders, or any other Apple data.</li>
+        <li>The password cannot change or delete events on your calendar — read only.</li>
+        <li>We store it encrypted at rest. The encryption key sits in our hosting environment, separate from the database.</li>
+        <li>You can revoke the password at any time at <a href="https://appleid.apple.com">appleid.apple.com</a> → Sign-In and Security → App-Specific Passwords → Willa. This immediately stops our access; we will detect the revocation on the next sync attempt and stop trying.</li>
+        <li>If you change your main Apple ID password, all app-specific passwords (including ours) are revoked automatically by Apple. We will text you to ask for a new one.</li>
+        <li>We do not have your main Apple ID password and do not want it.</li>
+      </ul>
+
+      <h2>10. SMS/Messaging Disclosure</h2>
       <p>Our Services send SMS notifications to users who have opted in. Regarding our messaging practices:</p>
       <ul>
         <li>We obtain explicit consent before sending any SMS messages</li>
@@ -141,13 +155,13 @@
       <h3>SMS Consent &amp; Data</h3>
       <p>We do not share your messaging consent data, opt-in status, or phone numbers with third parties for marketing purposes. Your phone number is used solely to deliver Village Assistant ("Willa") coordination messages that you have opted into.</p>
 
-      <h2>10. Children's Privacy</h2>
+      <h2>11. Children's Privacy</h2>
       <p>Our Services are intended for use by adults (age 18 and older). We do not knowingly collect personal information directly from children under 13. If you believe a child has provided us with personal information, please contact us at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#114;&#105;&#118;&#97;&#99;&#121;&#64;&#115;&#117;&#110;&#110;&#121;&#108;&#97;&#117;&#110;&#99;&#104;&#46;&#99;&#111;&#109;">&#112;&#114;&#105;&#118;&#97;&#99;&#121;&#64;&#115;&#117;&#110;&#110;&#121;&#108;&#97;&#117;&#110;&#99;&#104;&#46;&#99;&#111;&#109;</a> and we will promptly delete it.</p>
 
-      <h2>11. Changes to This Policy</h2>
+      <h2>12. Changes to This Policy</h2>
       <p>We may update this Privacy Policy from time to time. We will notify you of material changes by posting the updated policy on our website and updating the "Last Updated" date. Your continued use of the Services after changes are posted constitutes acceptance of the revised policy.</p>
 
-      <h2>12. Contact Us</h2>
+      <h2>13. Contact Us</h2>
       <p>If you have questions or concerns about this Privacy Policy or our data practices, please contact us at:</p>
       <p>
         <strong>AY Consulting dba Sunny Launch</strong><br>
