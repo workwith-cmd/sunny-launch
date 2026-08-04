@@ -121,7 +121,7 @@ body {
 .section-inner {
   max-width: 960px;
   margin: 0 auto;
-  padding: 60px 24px;
+  padding: 44px 24px;
 }
 
 .about {
@@ -548,7 +548,15 @@ body {
    =========================================== */
 
 .hero {
-  padding: 56px 24px 52px;
+  padding: 40px 24px 40px;
+}
+
+/* H1 inverts the heading system: coral text, dark full stop. Section
+   headings are the reverse — dark text, coral full stop. */
+.hero h1::after,
+.legal-inner h1::after {
+  content: ".";
+  color: var(--text);
 }
 
 .hero h1 {
@@ -562,6 +570,12 @@ body {
   font-size: 20px;
   line-height: 1.7;
   color: var(--text);
+}
+
+/* One-line descriptor under a headline, not a paragraph */
+.hero-tagline {
+  margin-top: 16px;
+  color: var(--text-muted);
 }
 
 /* ---- Section shells ---- */
@@ -712,11 +726,11 @@ body {
   /* Re-state the mobile hero padding: the desktop .hero rule above is later
      in the file than the original mobile block, so it would otherwise win. */
   .hero {
-    padding: 40px 24px 40px;
+    padding: 28px 24px;
   }
 
   .section-inner {
-    padding: 48px 24px;
+    padding: 36px 24px;
   }
 
   .work-top {
