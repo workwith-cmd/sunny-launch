@@ -16,6 +16,9 @@
   --text-muted: #737373;
   --text-nav: #404040;
   --border-subtle: rgba(0, 0, 0, 0.05);
+
+  /* ~66 characters at 18px — the readable line length */
+  --measure: 660px;
 }
 
 /* Reset */
@@ -118,7 +121,7 @@ body {
 .section-inner {
   max-width: 960px;
   margin: 0 auto;
-  padding: 80px 24px;
+  padding: 96px 24px;
 }
 
 .about {
@@ -237,12 +240,17 @@ body {
   background: var(--bg-cool);
 }
 
+/* Matches .section-h2 so both pages share one heading system */
 .work h2 {
   font-family: 'REM', sans-serif;
   font-weight: 700;
-  font-size: 32px;
-  color: var(--blue);
+  font-size: clamp(26px, 3vw, 32px);
+  letter-spacing: -0.5px;
+  color: var(--text);
   margin-bottom: 40px;
+  padding-top: 20px;
+  border-top: 3px solid var(--coral);
+  display: inline-block;
 }
 
 .work-lanes {
@@ -320,9 +328,13 @@ body {
 .contact h2 {
   font-family: 'REM', sans-serif;
   font-weight: 700;
-  font-size: 32px;
-  color: var(--blue);
+  font-size: clamp(26px, 3vw, 32px);
+  letter-spacing: -0.5px;
+  color: var(--text);
   margin-bottom: 12px;
+  padding-top: 20px;
+  border-top: 3px solid var(--coral);
+  display: inline-block;
 }
 
 .contact p {
@@ -536,19 +548,19 @@ body {
    Homepage v2 — Welcome / Why / Willa / Consulting
    =========================================== */
 
-/* Text wordmark replaces the logo image in nav */
-.nav-wordmark {
-  font-family: 'REM', sans-serif;
-  font-weight: 900;
-  font-size: 22px;
-  color: var(--coral);
-  letter-spacing: -0.5px;
+/* Hero gets real presence: it is one word, so it has to carry the screen */
+.hero {
+  padding: 128px 24px 96px;
 }
 
-/* ---- Hero subhead ---- */
+.hero h1 {
+  font-size: clamp(48px, 7vw, 76px);
+  letter-spacing: -1.5px;
+}
+
 .hero-sub {
-  margin-top: 24px;
-  max-width: 720px;
+  margin-top: 28px;
+  max-width: var(--measure);
   font-size: 20px;
   line-height: 1.7;
   color: var(--text);
@@ -568,31 +580,23 @@ body {
   padding-bottom: 56px;
 }
 
+/* One heading system for every section, so no section outranks another by
+   accident. The coral rule is the accent; blue is reserved for actions. */
 .section-h2 {
   font-family: 'REM', sans-serif;
   font-weight: 700;
-  font-size: 32px;
-  color: var(--blue);
-  margin-bottom: 28px;
-}
-
-/* Small caps label with the coral rule, matching .work-lane h3 */
-.eyebrow {
-  font-family: 'REM', sans-serif;
-  font-weight: 700;
-  font-size: 18px;
+  font-size: clamp(26px, 3vw, 32px);
+  letter-spacing: -0.5px;
   color: var(--text);
-  text-transform: uppercase;
-  letter-spacing: 1px;
   margin-bottom: 28px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid var(--coral);
+  padding-top: 20px;
+  border-top: 3px solid var(--coral);
   display: inline-block;
 }
 
 /* ---- Body copy ---- */
 .prose {
-  max-width: 720px;
+  max-width: var(--measure);
   font-size: 18px;
   line-height: 1.75;
   color: var(--text);
@@ -603,27 +607,30 @@ body {
 }
 
 .prose-muted {
-  max-width: 720px;
+  max-width: var(--measure);
   font-size: 18px;
   line-height: 1.75;
   color: var(--text-muted);
 }
 
 .lede {
-  max-width: 720px;
-  font-size: 20px;
+  max-width: var(--measure);
+  font-size: 21px;
   font-weight: 600;
-  line-height: 1.6;
+  line-height: 1.55;
   color: var(--text);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .pull-quote {
-  margin-top: 28px;
-  padding-left: 20px;
+  margin-top: 32px;
+  max-width: var(--measure);
+  padding-left: 22px;
   border-left: 3px solid var(--coral);
-  font-size: 18px;
-  line-height: 1.7;
+  font-family: 'REM', sans-serif;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 1.55;
   color: var(--text);
 }
 
@@ -678,7 +685,29 @@ body {
   }
 }
 
+/* The wordmark is a wide lockup (~8:1), so the nav swaps to the square icon
+   once the logo plus three links stop fitting on one row. */
+.nav-logo-icon {
+  display: none;
+  height: 28px;
+  width: auto;
+}
+
 @media (max-width: 640px) {
+  /* Re-state the mobile hero padding: the desktop .hero rule above is later
+     in the file than the original mobile block, so it would otherwise win. */
+  .hero {
+    padding: 72px 24px 56px;
+  }
+
+  .nav-logo-img {
+    display: none;
+  }
+
+  .nav-logo-icon {
+    display: block;
+  }
+
   .hero-sub {
     font-size: 18px;
   }
