@@ -248,9 +248,6 @@ body {
   letter-spacing: -0.5px;
   color: var(--text);
   margin-bottom: 40px;
-  padding-top: 20px;
-  border-top: 3px solid var(--coral);
-  display: inline-block;
 }
 
 .work-lanes {
@@ -332,9 +329,6 @@ body {
   letter-spacing: -0.5px;
   color: var(--text);
   margin-bottom: 12px;
-  padding-top: 20px;
-  border-top: 3px solid var(--coral);
-  display: inline-block;
 }
 
 .contact p {
@@ -581,7 +575,7 @@ body {
 }
 
 /* One heading system for every section, so no section outranks another by
-   accident. The coral rule is the accent; blue is reserved for actions. */
+   accident. The coral full stop is the only accent; blue is for actions. */
 .section-h2 {
   font-family: 'REM', sans-serif;
   font-weight: 700;
@@ -589,9 +583,13 @@ body {
   letter-spacing: -0.5px;
   color: var(--text);
   margin-bottom: 28px;
-  padding-top: 20px;
-  border-top: 3px solid var(--coral);
-  display: inline-block;
+}
+
+.section-h2::after,
+.work h2::after,
+.contact h2::after {
+  content: ".";
+  color: var(--coral);
 }
 
 /* ---- Body copy ---- */
@@ -613,24 +611,25 @@ body {
   color: var(--text-muted);
 }
 
+/* Lineage note, not a headline — the description below it is the point */
 .lede {
   max-width: var(--measure);
-  font-size: 21px;
-  font-weight: 600;
-  line-height: 1.55;
-  color: var(--text);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--text-muted);
   margin-bottom: 14px;
 }
 
+/* Set apart by type and space rather than a rule */
 .pull-quote {
-  margin-top: 32px;
+  margin-top: 36px;
   max-width: var(--measure);
-  padding-left: 22px;
-  border-left: 3px solid var(--coral);
   font-family: 'REM', sans-serif;
   font-weight: 400;
-  font-size: 21px;
-  line-height: 1.55;
+  font-size: 22px;
+  line-height: 1.5;
+  letter-spacing: -0.3px;
   color: var(--text);
 }
 
@@ -717,9 +716,13 @@ body {
   }
 
   .prose,
-  .prose-muted,
-  .pull-quote {
+  .prose-muted {
     font-size: 17px;
+  }
+
+  /* Keeps its step up over body copy now that the rule is gone */
+  .pull-quote {
+    font-size: 19px;
   }
 
   .btn {
