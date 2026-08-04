@@ -1,0 +1,19 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "sunny-launch-site",
+      "runtimeExecutable": "deno",
+      "runtimeArgs": [
+        "run",
+        "--allow-net",
+        "--allow-read",
+        "jsr:@std/http/file-server",
+        "--port",
+        "8790",
+        "."
+      ],
+      "port": 8790
+    }
+  ]
+}
