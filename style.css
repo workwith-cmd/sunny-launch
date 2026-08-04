@@ -121,7 +121,7 @@ body {
 .section-inner {
   max-width: 960px;
   margin: 0 auto;
-  padding: 96px 24px;
+  padding: 60px 24px;
 }
 
 .about {
@@ -166,8 +166,8 @@ body {
 
 /* ---- Company Logo Marquee ---- */
 .logo-marquee-section {
-  background: var(--bg-warm);
-  padding: 32px 0 48px;
+  background: var(--white);
+  padding: 8px 0 32px;
   overflow: hidden;
 }
 
@@ -291,14 +291,19 @@ body {
   border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
+/* Same family and color as the section headings, one step down in scale */
 .proof-points h3 {
   font-family: 'REM', sans-serif;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 22px;
+  letter-spacing: -0.3px;
   color: var(--text);
-  text-transform: uppercase;
-  letter-spacing: 1px;
   margin-bottom: 20px;
+}
+
+.proof-points h3::after {
+  content: ".";
+  color: var(--coral);
 }
 
 .proof-points ul {
@@ -314,7 +319,7 @@ body {
   padding: 16px 20px;
   background: var(--white);
   border-radius: 8px;
-  border-left: 3px solid var(--coral);
+  border: 1px solid rgba(0, 0, 0, 0.07);
 }
 
 /* ---- Contact ---- */
@@ -542,9 +547,8 @@ body {
    Homepage v2 — Welcome / Why / Willa / Consulting
    =========================================== */
 
-/* Hero gets real presence: it is one word, so it has to carry the screen */
 .hero {
-  padding: 128px 24px 96px;
+  padding: 56px 24px 52px;
 }
 
 .hero h1 {
@@ -692,11 +696,32 @@ body {
   width: auto;
 }
 
+/* Consulting: offerings on the left, headshot alongside */
+.work-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 48px;
+}
+
+.work-top-main {
+  flex: 1;
+  min-width: 0;
+}
+
 @media (max-width: 640px) {
   /* Re-state the mobile hero padding: the desktop .hero rule above is later
      in the file than the original mobile block, so it would otherwise win. */
   .hero {
-    padding: 72px 24px 56px;
+    padding: 40px 24px 40px;
+  }
+
+  .section-inner {
+    padding: 48px 24px;
+  }
+
+  .work-top {
+    flex-direction: column-reverse;
+    gap: 28px;
   }
 
   .nav-logo-img {
