@@ -763,3 +763,234 @@ body {
     text-align: center;
   }
 }
+
+/* ===========================================
+   /willa
+   =========================================== */
+
+.section-sub {
+  margin-top: -18px;
+  margin-bottom: 28px;
+  font-size: 17px;
+  color: var(--text-muted);
+}
+
+/* ---- How it works ---- */
+.steps {
+  counter-reset: step;
+  list-style: none;
+  max-width: var(--measure);
+}
+
+.steps li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 46px;
+  margin-bottom: 22px;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--coral);
+  color: var(--white);
+  font-family: 'REM', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.steps strong {
+  display: block;
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ---- Feature status table ---- */
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 28px;
+}
+
+.feature-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.feature-table th {
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-muted);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+.feature-table td {
+  padding: 13px 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  color: var(--text);
+}
+
+.feature-table td:last-child {
+  width: 1%;
+  white-space: nowrap;
+}
+
+.row-focus {
+  background: var(--bg-cool);
+}
+
+.tag {
+  display: inline-block;
+  padding: 3px 11px;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Status colors carry meaning, so each also differs in weight and label text */
+.tag-live {
+  background: #e3f2e8;
+  color: #1f6b3d;
+}
+
+.tag-building {
+  background: #fdeae4;
+  color: #a63c1e;
+}
+
+.tag-planned {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-muted);
+}
+
+/* ---- Testimonial ---- */
+.testimonial {
+  margin-top: 40px;
+  max-width: var(--measure);
+}
+
+.testimonial blockquote {
+  font-family: 'REM', sans-serif;
+  font-size: 22px;
+  line-height: 1.45;
+  letter-spacing: -0.3px;
+  color: var(--text);
+}
+
+.testimonial blockquote::before {
+  content: "\201C";
+}
+
+.testimonial blockquote::after {
+  content: "\201D";
+}
+
+.testimonial figcaption {
+  margin-top: 12px;
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+/* ---- Definition lists: house rules, goals, FAQ ---- */
+.rules,
+.faq {
+  max-width: var(--measure);
+}
+
+.rules dt,
+.faq dt {
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--text);
+  margin-top: 26px;
+}
+
+.rules dt:first-of-type,
+.faq dt:first-of-type {
+  margin-top: 0;
+}
+
+.rules dd,
+.faq dd {
+  margin-top: 6px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.faq a {
+  color: var(--blue);
+}
+
+/* ---- Vision ---- */
+.vision-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+.minor-h {
+  font-family: 'REM', sans-serif;
+  font-weight: 700;
+  font-size: 19px;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+.plain-list {
+  list-style: none;
+}
+
+.plain-list li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 12px;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+.plain-list li::before {
+  content: "\2014";
+  position: absolute;
+  left: 0;
+  color: var(--coral);
+}
+
+/* ---- Closing CTA ---- */
+.cta {
+  background: var(--bg-warm);
+}
+
+@media (max-width: 640px) {
+  .vision-cols {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .steps li,
+  .rules dd,
+  .faq dd,
+  .plain-list li {
+    font-size: 16px;
+  }
+
+  .testimonial blockquote {
+    font-size: 19px;
+  }
+}
