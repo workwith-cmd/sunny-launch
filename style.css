@@ -943,18 +943,21 @@ body {
 }
 
 .testimonial {
-  max-width: 780px;
   margin: 0 auto;
   text-align: center;
 }
 
+/* A serif sets the quote apart from the REM headings and Inter body without
+   loading a third webfont — Georgia is already on every machine. */
 .testimonial blockquote {
-  font-family: 'REM', sans-serif;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
   font-weight: 400;
-  font-size: clamp(23px, 3.2vw, 32px);
-  line-height: 1.4;
-  letter-spacing: -0.5px;
+  font-size: clamp(21px, 2.4vw, 30px);
+  line-height: 1.35;
+  letter-spacing: -0.2px;
   color: var(--text);
+  text-wrap: balance;
 }
 
 .testimonial blockquote::before {
@@ -1285,18 +1288,32 @@ body {
    columns come out ~196px, which is too narrow for the privacy rule.
    Same overhang as the hero, so the heading stays aligned. */
 @media (min-width: 1180px) {
-  /* Same treatment as the hero: a wider, centred container. At the plain
-     prose measure the three cards come out 209px, which wraps the third
-     card's title and runs the bodies six ragged lines. The cost is that
-     this heading sits further left than the prose-section headings. */
-  #rules .section-inner {
+  /* Three across inside the normal measure, so the heading and subheading
+     line up with every other section heading. Cards come out ~212px, so the
+     type steps down a notch to keep them readable at that width. */
+  /* The quote has no heading to misalign, so it can take a wider centred
+     container and land on one line */
+  #quote .section-inner {
     max-width: calc(var(--measure) + 48px + 252px);
   }
 
   .rules-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 16px;
     max-width: none;
+  }
+
+  .rule-card {
+    padding: 22px 20px 24px;
+  }
+
+  .rules-grid dt {
+    font-size: 17px;
+  }
+
+  .rules-grid dd {
+    font-size: 15px;
+    line-height: 1.6;
   }
 
   /* Equal-height cards so the row reads as a set, not three ragged blocks */
