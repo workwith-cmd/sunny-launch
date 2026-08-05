@@ -5,8 +5,12 @@
 
 :root {
   /* Brand colors */
-  /* Sampled from assets/logo.png — the rocket is a flat #f27822 */
-  --coral: #f27822;
+  /* Logo rocket is a flat #f27822; nudged darker so coral text clears the
+     WCAG AA large-text bar of 3:1 on white (#f27822 was 2.81:1) */
+  --coral: #e87211;
+  /* One notch darker, for coral text sitting on the tinted section
+     backgrounds where --coral lands at 2.85–2.90:1 */
+  --coral-deep: #e06a15;
   --blue: #38a1ff;
   --navy: #002f89;
   --bg: #f8f9fb;
@@ -304,7 +308,7 @@ body {
 
 .proof-points h3::after {
   content: ".";
-  color: var(--coral);
+  color: var(--coral-deep);
 }
 
 .proof-points ul {
@@ -482,7 +486,8 @@ body {
   font-family: 'REM', sans-serif;
   font-weight: 900;
   font-size: 36px;
-  color: var(--coral);
+  /* Sits on --bg-warm, so it needs the deeper coral */
+  color: var(--coral-deep);
   margin-bottom: 8px;
 }
 
@@ -601,7 +606,7 @@ body {
 .work h2::after,
 .contact h2::after {
   content: ".";
-  color: var(--coral);
+  color: var(--coral-deep);
 }
 
 /* ---- Body copy ---- */
