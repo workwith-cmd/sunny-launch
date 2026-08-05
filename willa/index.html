@@ -24,9 +24,7 @@
       <a href="/" class="nav-logo nav-logo-swap" aria-label="Sunny Launch">
         <img src="/assets/logo.png" alt="" class="nav-logo-img mark mark-sl">
         <img src="/assets/icon.png" alt="" class="nav-logo-icon mark mark-sl">
-        <!-- Save the Willa "W" here; hides itself until the asset exists -->
-        <img src="/assets/willa-mark.png" alt="" class="mark mark-willa"
-             onerror="this.remove(); document.getElementById('nav').classList.add('no-swap');">
+        <img src="/assets/willa-mark.png" alt="" class="mark mark-willa">
       </a>
       <div class="nav-links">
         <a href="/willa/" class="nav-top-only">Willa</a>
@@ -53,7 +51,7 @@
 
       <figure class="sms">
         <div class="sms-screen" role="img"
-             aria-label="A text conversation with Willa. Willa writes: Larry's meetup in Walnut Creek moved to Thursday August 20, 5:30 to 8:30 PM. Terry needs coverage for that period. Kerry gets back 6 PM on Thursdays, but it's variable. Worth confirming if she can cover starting 5:40 PM. Will she be covering? Just reply YES or NO. The parent replies: YES. Willa replies: Got it, confirmed! No calendar changes were needed for this one.">
+             aria-label="A text conversation with Willa on Thursday, August 14. Willa writes: Larry's meetup in Walnut Creek moved to Thursday August 20, 5:30 to 8:30 PM. Terry needs coverage for that period. Kerry gets back 6 PM on Thursdays, but it's variable. Worth confirming if she can cover starting 5:40 PM. Will she be covering? Just reply YES or NO. The parent replies: YES. Willa replies: Got it, confirmed! No calendar changes were needed for this one.">
           <p class="sms-day">Thu, Aug 14</p>
           <p class="bubble bubble-in">
             Larry's meetup in Walnut Creek moved to Thu Aug 20, 5:30&ndash;8:30PM. Terry needs
@@ -291,6 +289,8 @@
         <a href="https://linkedin.com/in/alvinyeh" target="_blank" rel="noopener" class="footer-linkedin" aria-label="LinkedIn">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         </a>
+        <a href="/willa/">Willa</a>
+        <a href="/consulting/">Consulting</a>
         <a href="/privacy.html">Privacy policy</a>
         <a href="/terms.html">Terms &amp; conditions</a>
       </div>
@@ -309,9 +309,14 @@
         nav.classList.toggle('is-willa', past);
         ticking = false;
       }
-      window.addEventListener('scroll', function () {
+      function schedule() {
         if (!ticking) { ticking = true; requestAnimationFrame(update); }
-      }, { passive: true });
+      }
+      // Resize and rotation matter as much as scroll: the hero changes height
+      // at the 1180px breakpoint, which moves the threshold underneath us.
+      window.addEventListener('scroll', schedule, { passive: true });
+      window.addEventListener('resize', schedule, { passive: true });
+      window.addEventListener('orientationchange', schedule, { passive: true });
       update();
     })();
   </script>

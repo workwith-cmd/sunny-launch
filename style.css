@@ -837,8 +837,7 @@ body {
   mix-blend-mode: multiply;
 }
 
-/* If the Willa mark is missing, keep the Sunny Launch mark visible */
-.nav.is-willa:not(.no-swap) .mark-sl {
+.nav.is-willa .mark-sl {
   opacity: 0;
 }
 
@@ -953,9 +952,11 @@ body {
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
   font-weight: 400;
-  /* 26px is the largest that keeps the quote on one line in the 912px
-     container at desktop widths; measured, not guessed */
-  font-size: clamp(19px, 2.05vw, 26px);
+  /* 26px is the largest that fits on one line in the 912px container with
+     Georgia, but that leaves only 7% headroom, and Georgia is absent on most
+     Android and many Linux systems. 24px keeps the single line intact for a
+     substituted serif up to ~15% wider. */
+  font-size: clamp(19px, 1.9vw, 24px);
   line-height: 1.35;
   letter-spacing: -0.2px;
   color: var(--text);
@@ -1276,11 +1277,6 @@ body {
   color: var(--coral);
 }
 
-/* The section carries the page's only carded row, so it earns more air */
-#rules .section-inner {
-  padding-top: 64px;
-  padding-bottom: 68px;
-}
 
 .rules-grid dt {
   margin-top: 0;
@@ -1297,6 +1293,13 @@ body {
      container and land on one line */
   #quote .section-inner {
     max-width: calc(var(--measure) + 48px + 252px);
+  }
+
+  /* The carded row earns more air, but only where it is actually three
+     across. On mobile the cards stack and the extra height is dead space. */
+  #rules .section-inner {
+    padding-top: 64px;
+    padding-bottom: 68px;
   }
 
   .rules-grid {
