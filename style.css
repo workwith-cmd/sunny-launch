@@ -551,13 +551,6 @@ body {
   padding: 40px 24px 40px;
 }
 
-/* H1 inverts the heading system: coral text, dark full stop. Section
-   headings are the reverse — dark text, coral full stop. */
-.hero h1::after,
-.legal-inner h1::after {
-  content: ".";
-  color: var(--text);
-}
 
 .hero h1 {
   font-size: clamp(48px, 7vw, 76px);
