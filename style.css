@@ -769,9 +769,15 @@ body {
   }
 }
 
+
 /* ===========================================
    /willa
    =========================================== */
+
+/* Heading utility: skip the full stop when the text already ends in punctuation */
+.no-stop::after {
+  content: none !important;
+}
 
 .section-sub {
   margin-top: -18px;
@@ -780,7 +786,59 @@ body {
   color: var(--text-muted);
 }
 
-/* ---- How it works ---- */
+.hero-kicker {
+  margin-top: 18px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.lede-prose {
+  max-width: var(--measure);
+  font-size: 21px;
+  line-height: 1.55;
+  letter-spacing: -0.2px;
+  color: var(--text);
+  margin-bottom: 18px;
+}
+
+/* ---- Nav mark cross-fade ---- */
+.nav-logo-swap {
+  position: relative;
+}
+
+.nav-logo-swap .mark {
+  transition: opacity 0.28s ease;
+}
+
+/* Sits over the wordmark, which keeps its box so nothing shifts on swap.
+   The asset is a 1024px square whose glyph fills only ~57% of the canvas, so
+   it is set oversized to make the W read at roughly wordmark height. It is
+   absolutely positioned, so the extra size costs no layout.
+   The artwork also ships on an opaque cream ground rather than transparency;
+   multiply drops that ground into the white nav. Replacing the asset with a
+   transparent PNG or SVG would let both of these hacks go away. */
+.mark-willa {
+  position: absolute;
+  left: -9px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 48px;
+  width: 48px;
+  opacity: 0;
+  mix-blend-mode: multiply;
+}
+
+/* If the Willa mark is missing, keep the Sunny Launch mark visible */
+.nav.is-willa:not(.no-swap) .mark-sl {
+  opacity: 0;
+}
+
+.nav.is-willa .mark-willa {
+  opacity: 1;
+}
+
+/* ---- How it works: numbered steps joined by a rail ---- */
 .steps {
   counter-reset: step;
   list-style: none;
@@ -790,23 +848,27 @@ body {
 .steps li {
   counter-increment: step;
   position: relative;
-  padding-left: 46px;
-  margin-bottom: 22px;
-  font-size: 18px;
+  padding-left: 48px;
+  padding-bottom: 26px;
+  font-size: 17px;
   line-height: 1.65;
   color: var(--text-muted);
+}
+
+.steps li:last-child {
+  padding-bottom: 0;
 }
 
 .steps li::before {
   content: counter(step);
   position: absolute;
   left: 0;
-  top: 1px;
+  top: 0;
   width: 30px;
   height: 30px;
   border-radius: 50%;
   background: var(--coral);
-  /* Dark on orange, not white: white on #f27822 is only 2.8:1 */
+  /* Dark on orange: white on #e87211 is only 2.9:1 */
   color: var(--text);
   font-family: 'REM', sans-serif;
   font-weight: 700;
@@ -815,86 +877,73 @@ body {
   text-align: center;
 }
 
+/* The rail connecting each step to the next */
+.steps li::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 36px;
+  bottom: 8px;
+  width: 2px;
+  background: rgba(232, 114, 17, 0.28);
+}
+
+.steps li:last-child::after {
+  display: none;
+}
+
 .steps strong {
   display: block;
+  margin-bottom: 2px;
   color: var(--text);
   font-weight: 600;
+  font-size: 18px;
 }
 
-/* ---- Feature status table ---- */
-.table-wrap {
-  overflow-x: auto;
-  margin-top: 28px;
+/* ---- Use cases ---- */
+.use-cases {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 40px;
 }
 
-.feature-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 16px;
-}
-
-.feature-table th {
-  text-align: left;
-  padding: 10px 12px;
-  font-size: 13px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-  color: var(--text-muted);
-  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
-}
-
-.feature-table td {
-  padding: 13px 12px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+.use-cases li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 17px;
+  line-height: 1.55;
   color: var(--text);
 }
 
-.feature-table td:last-child {
-  width: 1%;
-  white-space: nowrap;
+.use-cases li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--coral);
 }
 
-.row-focus {
+/* ---- Testimonial, as its own section ---- */
+.quote-section {
   background: var(--bg-cool);
 }
 
-.tag {
-  display: inline-block;
-  padding: 3px 11px;
-  border-radius: 99px;
-  font-size: 13px;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-/* Status colors carry meaning, so each also differs in weight and label text */
-.tag-live {
-  background: #e3f2e8;
-  color: #1f6b3d;
-}
-
-.tag-building {
-  background: #fdeedd;
-  color: #9a4a0d;
-}
-
-.tag-planned {
-  background: rgba(0, 0, 0, 0.05);
-  color: var(--text-muted);
-}
-
-/* ---- Testimonial ---- */
 .testimonial {
-  margin-top: 40px;
-  max-width: var(--measure);
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .testimonial blockquote {
   font-family: 'REM', sans-serif;
-  font-size: 22px;
-  line-height: 1.45;
-  letter-spacing: -0.3px;
+  font-weight: 400;
+  font-size: clamp(23px, 3.2vw, 32px);
+  line-height: 1.4;
+  letter-spacing: -0.5px;
   color: var(--text);
 }
 
@@ -907,75 +956,98 @@ body {
 }
 
 .testimonial figcaption {
-  margin-top: 12px;
+  margin-top: 16px;
   font-size: 15px;
   color: var(--text-muted);
 }
 
-/* ---- Definition lists: house rules, goals, FAQ ---- */
-.rules,
-.faq {
+/* ---- Definition lists: house rules, goals ---- */
+.rules {
   max-width: var(--measure);
 }
 
-.rules dt,
-.faq dt {
+.rules dt {
   font-weight: 600;
   font-size: 18px;
   color: var(--text);
-  margin-top: 26px;
+  margin-top: 24px;
 }
 
-.rules dt:first-of-type,
-.faq dt:first-of-type {
+.rules dt:first-of-type {
   margin-top: 0;
 }
 
-.rules dd,
-.faq dd {
-  margin-top: 6px;
+.rules dd {
+  margin-top: 5px;
   font-size: 17px;
   line-height: 1.7;
   color: var(--text-muted);
 }
 
-.faq a {
-  color: var(--blue);
+/* ---- FAQ accordion ---- */
+.faq {
+  max-width: var(--measure);
+  border-top: 1px solid rgba(0, 0, 0, 0.09);
 }
 
-/* ---- Vision ---- */
-.vision-cols {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
+.faq-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
 }
 
-.minor-h {
-  font-family: 'REM', sans-serif;
-  font-weight: 700;
-  font-size: 19px;
-  color: var(--text);
-  margin-bottom: 14px;
-}
-
-.plain-list {
-  list-style: none;
-}
-
-.plain-list li {
+.faq-item summary {
   position: relative;
-  padding-left: 18px;
-  margin-bottom: 12px;
+  cursor: pointer;
+  list-style: none;
+  padding: 16px 36px 16px 0;
   font-size: 17px;
-  line-height: 1.65;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Chevron */
+.faq-item summary::after {
+  content: "";
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--text-muted);
+  border-bottom: 2px solid var(--text-muted);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.faq-item[open] summary::after {
+  transform: translateY(-25%) rotate(-135deg);
+}
+
+.faq-body {
+  padding: 0 0 20px;
+}
+
+.faq-body p {
+  font-size: 17px;
+  line-height: 1.7;
   color: var(--text-muted);
 }
 
-.plain-list li::before {
-  content: "\2014";
-  position: absolute;
-  left: 0;
-  color: var(--coral);
+.faq-body p + p {
+  margin-top: 12px;
+}
+
+.faq-body a {
+  color: var(--blue);
 }
 
 /* ---- Closing CTA ---- */
@@ -983,20 +1055,27 @@ body {
   background: var(--bg-warm);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .nav-logo-swap .mark,
+  .faq-item summary::after {
+    transition: none;
+  }
+}
+
 @media (max-width: 640px) {
-  .vision-cols {
+  .use-cases {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 14px;
   }
 
   .steps li,
   .rules dd,
-  .faq dd,
-  .plain-list li {
+  .use-cases li,
+  .faq-body p {
     font-size: 16px;
   }
 
-  .testimonial blockquote {
+  .lede-prose {
     font-size: 19px;
   }
 }

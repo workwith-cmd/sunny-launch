@@ -7,7 +7,7 @@
   <meta name="description" content="Willa is a family assistant that works over text. Air traffic control for working parents: she watches your calendars, spots conflicts, and lines up help so your kids get where they need to be.">
   <link rel="canonical" href="https://www.sunnylaunch.com/willa/">
   <meta property="og:title" content="Willa — a family assistant for working parents">
-  <meta property="og:description" content="Air traffic control for working parents. Willa watches your calendars, spots conflicts, and lines up help so your kids get where they need to be.">
+  <meta property="og:description" content="Air traffic controller for working parents, helping you get your kids where they need to be.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.sunnylaunch.com/willa/">
   <link rel="icon" type="image/png" href="/assets/icon.png">
@@ -18,12 +18,15 @@
 </head>
 <body>
 
-  <!-- Nav -->
-  <nav class="nav">
+  <!-- Nav — the mark cross-fades from Sunny Launch to Willa on scroll -->
+  <nav class="nav" id="nav">
     <div class="nav-inner">
-      <a href="/" class="nav-logo" aria-label="Sunny Launch">
-        <img src="/assets/logo.png" alt="" class="nav-logo-img">
-        <img src="/assets/icon.png" alt="" class="nav-logo-icon">
+      <a href="/" class="nav-logo nav-logo-swap" aria-label="Sunny Launch">
+        <img src="/assets/logo.png" alt="" class="nav-logo-img mark mark-sl">
+        <img src="/assets/icon.png" alt="" class="nav-logo-icon mark mark-sl">
+        <!-- Save the Willa "W" here; hides itself until the asset exists -->
+        <img src="/assets/willa-mark.png" alt="" class="mark mark-willa"
+             onerror="this.remove(); document.getElementById('nav').classList.add('no-swap');">
       </a>
       <div class="nav-links">
         <a href="/willa/">Willa</a>
@@ -37,139 +40,78 @@
   <section class="hero">
     <h1>Meet Willa</h1>
     <p class="hero-sub">
-      Air traffic control for working parents &mdash; helping you make sure your kids
-      get where they need to be.
+      Air traffic controller for working parents, helping you get your kids where they
+      need to be.
     </p>
+    <p class="hero-kicker">No app to download. No dashboard to check. Just a text.</p>
   </section>
 
-  <!-- What Willa does -->
-  <section id="what" class="section-cool">
+  <!-- How it works -->
+  <section id="how" class="section-cool">
     <div class="section-inner">
-      <h2 class="section-h2">What Willa does</h2>
-      <p class="prose">Willa is a family assistant that works over text.</p>
-      <p class="prose">
-        She watches your family's calendars. When something breaks &mdash; soccer moves to 4:30,
-        nobody's on pickup, two kids are due in two places at once &mdash; she texts you a plan.
-      </p>
-      <p class="prose">
-        You reply yes or no. Nothing changes on your calendar unless you say yes.
-      </p>
-      <p class="prose"><strong>No app to download. No dashboard to check. Just a text.</strong></p>
+      <h2 class="section-h2">How it works</h2>
+      <ol class="steps">
+        <li>
+          <strong>Willa spots the gap</strong>
+          Thursday's practice moved to 4:30. You're in a meeting until 5, and your partner is
+          across town.
+        </li>
+        <li>
+          <strong>She proposes a fix</strong>
+          "Practice moved to 4:30 Thursday. You're both booked. Want me to ask your mom?"
+        </li>
+        <li>
+          <strong>You decide</strong>
+          Reply yes and Willa handles the ask and updates the calendar. Reply no and nothing
+          happens.
+        </li>
+        <li>
+          <strong>Your village knows</strong>
+          Whoever's covering gets the details, without you writing a single text.
+        </li>
+      </ol>
     </div>
   </section>
 
   <!-- Mission -->
   <section id="village">
     <div class="section-inner">
-      <h2 class="section-h2">It takes a village</h2>
+      <h2 class="section-h2">Rebuilding the village</h2>
+      <p class="lede-prose">We've forgotten what "it takes a village" really means.</p>
       <p class="prose">
-        The nuclear family is younger than you think. As an ideal &mdash; two parents, their kids,
-        a house of their own &mdash; it's largely a post-war invention, built on a uniquely
-        prosperous few decades. In 1950, 21% of Americans lived in a multigenerational household.
-        By 1980 that had fallen to 12%. Suburbs spread, retirement got more comfortable, and the
-        extended household quietly went out of style.
+        For most of human history, raising kids was shared work. The nuclear family &mdash; two
+        parents managing alone &mdash; is barely eighty years old. In 1950, 21% of Americans lived
+        in a multigenerational household. By 1980, 12%.
       </p>
       <p class="prose">
-        That's about eighty years. Humans have been raising children cooperatively for roughly two
-        million. In forager societies still living that way, close to half of all childcare comes
-        from someone who isn't the mother &mdash; grandmothers, aunts, older siblings, neighbors.
-        Margaret Mead's observation holds up: no culture before ours asked a single family to
-        manage the whole job by itself.
-      </p>
-      <p class="prose">
-        Here's the part people get wrong, though. The village didn't move away. The median American
-        lives eighteen miles from their mother, and more than half live within an hour of extended
-        family. Your village is still right there.
-      </p>
-      <p class="prose">
-        It's just that everyone in it works now. Nobody holds the whole schedule. And eighteen
-        miles at three o'clock on a Tuesday might as well be three states.
+        But the village didn't move away. The median American still lives eighteen miles from their
+        mother. It's just that everyone works now, nobody holds the whole schedule, and eighteen
+        miles at three o'clock might as well be three states.
       </p>
       <blockquote class="pull-quote">
-        The village hypothesis: what feels like a time-management problem for parents is really a
-        coordination problem. You don't need to be more organized. Your village needs to be &mdash;
-        and that's a job for software, not willpower.
+        What feels like a time problem is really a coordination problem. That's what Willa is for.
       </blockquote>
-      <p class="prose">That's what Willa is for.</p>
     </div>
   </section>
 
-  <!-- How it works -->
-  <section id="how" class="section-warm">
+  <!-- Use cases -->
+  <section id="use-cases" class="section-warm">
     <div class="section-inner">
-      <h2 class="section-h2">How it works</h2>
-      <ol class="steps">
-        <li>
-          <strong>Willa spots the gap.</strong>
-          Thursday's practice moved to 4:30. You're in a meeting until 5, and your partner is
-          across town.
-        </li>
-        <li>
-          <strong>She proposes a fix.</strong>
-          "Practice moved to 4:30 Thursday. You're both booked. Want me to ask your mom?"
-        </li>
-        <li>
-          <strong>You decide.</strong>
-          Reply yes and Willa handles the ask and updates the calendar. Reply no and nothing
-          happens.
-        </li>
-        <li>
-          <strong>Your village knows.</strong>
-          Whoever's covering gets the details &mdash; time, place, which kid &mdash; without you
-          writing a single text.
-        </li>
-      </ol>
+      <h2 class="section-h2">What you can do with Willa</h2>
+      <ul class="use-cases">
+        <li>Assign pickup or dropoff to someone in your village</li>
+        <li>Get a Sunday email to plan the week ahead</li>
+        <li>Add a nanny or babysitter to your village</li>
+        <li>Add grandparents or another family to your village</li>
+        <li>Spot calendar conflicts before they become a problem</li>
+        <li>Ask your village for help</li>
+      </ul>
     </div>
   </section>
 
-  <!-- Feature status -->
-  <section id="features">
+  <!-- Testimonial -->
+  <section id="quote" class="quote-section">
     <div class="section-inner">
-      <h2 class="section-h2">What's live, what's coming</h2>
-      <p class="prose">
-        Willa is early. Here's exactly where everything stands.
-      </p>
-      <div class="table-wrap">
-        <table class="feature-table">
-          <thead>
-            <tr><th scope="col">Feature</th><th scope="col">Status</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Google Calendar sync</td><td><span class="tag tag-live">Live</span></td></tr>
-            <tr><td>Apple / iCloud Calendar sync</td><td><span class="tag tag-live">Live</span></td></tr>
-            <tr><td>Conflict detection</td><td><span class="tag tag-live">Live</span></td></tr>
-            <tr><td>Coordination plans by text</td><td><span class="tag tag-live">Live</span></td></tr>
-            <tr><td>Calendar updates after you confirm</td><td><span class="tag tag-live">Live</span></td></tr>
-            <tr><td>Weekly schedule email</td><td><span class="tag tag-live">Live</span></td></tr>
-            <tr class="row-focus"><td><strong>Pickup &amp; dropoff assignment</strong></td><td><span class="tag tag-building">Building now</span></td></tr>
-            <tr><td>Adding your village &mdash; grandparents, friends</td><td><span class="tag tag-building">Building now</span></td></tr>
-            <tr><td>Automatic reminders to your village</td><td><span class="tag tag-planned">Planned</span></td></tr>
-            <tr><td>"Your kid's been picked up" notifications</td><td><span class="tag tag-planned">Planned</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- Who it's for -->
-  <section id="who" class="section-cool">
-    <div class="section-inner">
-      <h2 class="section-h2">Who Willa is for</h2>
-      <p class="prose">
-        Working parents with school-age kids and a week that only holds together because other
-        people help. Your mom does Tuesday pickup. A neighbor takes both kids to soccer when you're
-        stuck at work. A close friend is the backup when the backup falls through.
-      </p>
-      <p class="prose">
-        If that's your life, the hard part isn't knowing the schedule. It's the twenty texts it
-        takes to change it.
-      </p>
-      <p class="prose">
-        <strong>Willa probably isn't for you</strong> if your schedule rarely moves, or if you
-        handle every pickup and dropoff yourself. Willa coordinates a village. Without one, there's
-        not much for her to do.
-      </p>
-
       <figure class="testimonial">
         <blockquote>Any parent who says they don't have logistics problems is lying.</blockquote>
         <figcaption>Laura, mom of two teenagers</figcaption>
@@ -178,7 +120,7 @@
   </section>
 
   <!-- House rules -->
-  <section id="rules" class="section-warm">
+  <section id="rules">
     <div class="section-inner">
       <h2 class="section-h2">House rules</h2>
       <p class="section-sub">Our commitments to you.</p>
@@ -202,37 +144,25 @@
   </section>
 
   <!-- Vision -->
-  <section id="vision">
+  <section id="vision" class="section-cool">
     <div class="section-inner">
-      <h2 class="section-h2">The vision</h2>
-      <div class="vision-cols">
-        <div>
-          <h3 class="minor-h">What this won't be</h3>
-          <ul class="plain-list">
-            <li>Growth at all costs.</li>
-            <li>A product that gets worse the more successful it becomes.</li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="minor-h">What this aims to be</h3>
-          <ul class="plain-list">
-            <li>A family business that puts its customers' families first.</li>
-            <li>Bootstrapped. No outside investment, so no inherited growth targets or someone else's timeline.</li>
-            <li>A sensible business &mdash; no planned obsolescence, no subscription that quietly becomes a toll booth.</li>
-            <li>1% of revenue to local education organizations.</li>
-          </ul>
-        </div>
-      </div>
+      <h2 class="section-h2">The kind of company this will be</h2>
+      <p class="prose">
+        Bootstrapped, so nobody else's growth targets end up in your inbox. Small on purpose.
+        Priced like a tool you own, not a meter that runs. And 1% of revenue goes to local
+        education organizations.
+      </p>
+      <blockquote class="pull-quote">
+        If Willa ever gets worse because it got bigger, we've failed.
+      </blockquote>
     </div>
   </section>
 
   <!-- Current goals -->
-  <section id="goals" class="section-cool">
+  <section id="goals">
     <div class="section-inner">
       <h2 class="section-h2">Current goals</h2>
-      <p class="prose">
-        So you know exactly where this is going, here are my three goals for this year.
-      </p>
+      <p class="section-sub">So you know exactly where this is going.</p>
       <dl class="rules">
         <dt>Prove it's useful.</dt>
         <dd>
@@ -259,53 +189,87 @@
   <section id="faq" class="section-warm">
     <div class="section-inner">
       <h2 class="section-h2">Frequently asked questions</h2>
-      <dl class="faq">
-        <dt>Who is Willa for?</dt>
-        <dd>
-          Working parents with recurring weekly schedule changes, who rely on grandparents and/or
-          friends for carpooling.
-        </dd>
 
-        <dt>Which calendars does Willa work with?</dt>
-        <dd>Google Calendar and Apple/iCloud.</dd>
+      <div class="faq">
+        <details class="faq-item">
+          <summary>Who is Willa for?</summary>
+          <div class="faq-body">
+            <p>
+              Working parents with recurring weekly schedule changes, who rely on grandparents
+              and/or friends for carpooling.
+            </p>
+            <p>
+              Willa probably isn't for you if your schedule rarely moves, or if you handle every
+              pickup and dropoff yourself. Willa coordinates a village &mdash; without one, there's
+              not much for her to do.
+            </p>
+          </div>
+        </details>
 
-        <dt>Can I connect my work calendar?</dt>
-        <dd>Yes, if you're able. Willa works best when she can see work calendars.</dd>
+        <details class="faq-item">
+          <summary>Which calendars does Willa work with?</summary>
+          <div class="faq-body"><p>Google Calendar and Apple/iCloud.</p></div>
+        </details>
 
-        <dt>Do I need to install an app?</dt>
-        <dd>No. Willa works entirely over text.</dd>
+        <details class="faq-item">
+          <summary>Can I connect my work calendar?</summary>
+          <div class="faq-body">
+            <p>Yes, if you're able. Willa works best when she can see work calendars.</p>
+          </div>
+        </details>
 
-        <dt>Will Willa ever change my calendar without asking?</dt>
-        <dd>No. Nothing is written to your calendar until you reply yes.</dd>
+        <details class="faq-item">
+          <summary>Do I need to install an app?</summary>
+          <div class="faq-body"><p>No. Willa works entirely over text.</p></div>
+        </details>
 
-        <dt>What if Willa gets it wrong?</dt>
-        <dd>
-          Don't reply to Willa and nothing will happen. Please do send us an email at
-          <a href="mailto:workwith@sunnylaunch.com">workwith@sunnylaunch.com</a> to let us know too.
-        </dd>
+        <details class="faq-item">
+          <summary>Will Willa ever change my calendar without asking?</summary>
+          <div class="faq-body"><p>No. Nothing is written to your calendar until you reply yes.</p></div>
+        </details>
 
-        <dt>Who all has access to my family's information?</dt>
-        <dd>Security-compliant tech vendors and two humans, on an as-needed basis.</dd>
+        <details class="faq-item">
+          <summary>What if Willa gets it wrong?</summary>
+          <div class="faq-body">
+            <p>
+              Don't reply to Willa and nothing will happen. Please do send us an email at
+              <a href="mailto:workwith@sunnylaunch.com">workwith@sunnylaunch.com</a> to let us know
+              too.
+            </p>
+          </div>
+        </details>
 
-        <dt>Are you SOC 2 or ISO 27001 certified?</dt>
-        <dd>Not currently, but we plan to down the road.</dd>
+        <details class="faq-item">
+          <summary>Who all has access to my family's information?</summary>
+          <div class="faq-body">
+            <p>Security-compliant tech vendors and two humans, on an as-needed basis.</p>
+          </div>
+        </details>
 
-        <dt>How do I stop, and what happens to my data?</dt>
-        <dd>
-          Text STOP at any time. Your data is deleted on request &mdash; see the
-          <a href="/privacy.html">privacy policy</a> for the full detail.
-        </dd>
-      </dl>
+        <details class="faq-item">
+          <summary>Are you SOC 2 or ISO 27001 certified?</summary>
+          <div class="faq-body"><p>Not currently, but we plan to down the road.</p></div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How do I stop, and what happens to my data?</summary>
+          <div class="faq-body">
+            <p>
+              Text STOP at any time. Your data is deleted on request &mdash; see the
+              <a href="/privacy.html">privacy policy</a> for the full detail.
+            </p>
+          </div>
+        </details>
+      </div>
     </div>
   </section>
 
   <!-- CTA -->
   <section id="get-willa" class="cta">
     <div class="section-inner">
-      <h2 class="section-h2">Interested?</h2>
+      <h2 class="section-h2 no-stop">Interested?</h2>
       <p class="prose">
-        Willa is in a small pilot right now. If your week sounds like the one described above,
-        get in touch and let's talk.
+        Willa is in a small pilot right now. If your week sounds like the one above, get in touch.
       </p>
       <div class="btn-row">
         <!-- TODO: primary CTA still undecided — mailto is the zero-infrastructure placeholder -->
@@ -328,6 +292,25 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    // Cross-fade the Sunny Launch mark to the Willa mark once past the hero.
+    (function () {
+      var nav = document.getElementById('nav');
+      var hero = document.querySelector('.hero');
+      if (!nav || !hero) return;
+      var ticking = false;
+      function update() {
+        var past = window.scrollY > hero.offsetHeight * 0.6;
+        nav.classList.toggle('is-willa', past);
+        ticking = false;
+      }
+      window.addEventListener('scroll', function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }, { passive: true });
+      update();
+    })();
+  </script>
 
 </body>
 </html>
