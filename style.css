@@ -5,7 +5,8 @@
 
 :root {
   /* Brand colors */
-  --coral: #ed6244;
+  /* Sampled from assets/logo.png — the rocket is a flat #f27822 */
+  --coral: #f27822;
   --blue: #38a1ff;
   --navy: #002f89;
   --bg: #f8f9fb;
@@ -13,9 +14,14 @@
   --bg-cool: #f4f7fa;
   --white: #ffffff;
   --text: #0a0a0a;
-  --text-muted: #737373;
+  /* #737373 measured 4.41–4.48:1 on the tinted bands, just under the 4.5:1
+     AA floor, and large blocks of it read washed out */
+  --text-muted: #6b6b6b;
   --text-nav: #404040;
   --border-subtle: rgba(0, 0, 0, 0.05);
+
+  /* ~66 characters at 18px — the readable line length */
+  --measure: 660px;
 }
 
 /* Reset */
@@ -82,14 +88,20 @@ body {
   transition: color 0.2s;
 }
 
-.nav-links a:hover {
+/* Nav and footer links were 22–24px tall. Padding lifts the tap target to
+   44px without moving anything visually. */
+.nav-links a:not(.nav-cta):not(.nav-btn) {
+  padding: 10px 0;
+}
+
+.nav-links a:not(.nav-btn):hover {
   color: var(--blue);
 }
 
 .nav-cta {
   background: var(--blue) !important;
   color: var(--white) !important;
-  padding: 8px 18px !important;
+  padding: 10px 18px !important;
   border-radius: 8px;
   transition: opacity 0.2s !important;
 }
@@ -118,7 +130,7 @@ body {
 .section-inner {
   max-width: 960px;
   margin: 0 auto;
-  padding: 80px 24px;
+  padding: 44px 24px;
 }
 
 .about {
@@ -163,8 +175,8 @@ body {
 
 /* ---- Company Logo Marquee ---- */
 .logo-marquee-section {
-  background: var(--bg-warm);
-  padding: 32px 0 48px;
+  background: var(--white);
+  padding: 8px 0 32px;
   overflow: hidden;
 }
 
@@ -237,11 +249,13 @@ body {
   background: var(--bg-cool);
 }
 
+/* Matches .section-h2 so both pages share one heading system */
 .work h2 {
   font-family: 'REM', sans-serif;
   font-weight: 700;
-  font-size: 32px;
-  color: var(--blue);
+  font-size: clamp(26px, 3vw, 32px);
+  letter-spacing: -0.5px;
+  color: var(--text);
   margin-bottom: 40px;
 }
 
@@ -286,14 +300,19 @@ body {
   border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
+/* Same family and color as the section headings, one step down in scale */
 .proof-points h3 {
   font-family: 'REM', sans-serif;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 22px;
+  letter-spacing: -0.3px;
   color: var(--text);
-  text-transform: uppercase;
-  letter-spacing: 1px;
   margin-bottom: 20px;
+}
+
+.proof-points h3::after {
+  content: ".";
+  color: var(--coral);
 }
 
 .proof-points ul {
@@ -309,7 +328,7 @@ body {
   padding: 16px 20px;
   background: var(--white);
   border-radius: 8px;
-  border-left: 3px solid var(--coral);
+  border: 1px solid rgba(0, 0, 0, 0.07);
 }
 
 /* ---- Contact ---- */
@@ -320,8 +339,9 @@ body {
 .contact h2 {
   font-family: 'REM', sans-serif;
   font-weight: 700;
-  font-size: 32px;
-  color: var(--blue);
+  font-size: clamp(26px, 3vw, 32px);
+  letter-spacing: -0.5px;
+  color: var(--text);
   margin-bottom: 12px;
 }
 
@@ -390,6 +410,7 @@ body {
   color: var(--text-muted);
   text-decoration: none;
   transition: color 0.2s;
+  padding: 11px 0;
 }
 
 .footer-links a:hover {
@@ -470,6 +491,7 @@ body {
   font-family: 'REM', sans-serif;
   font-weight: 900;
   font-size: 36px;
+  /* Sits on --bg-warm, so it needs the deeper coral */
   color: var(--coral);
   margin-bottom: 8px;
 }
@@ -530,4 +552,880 @@ body {
 
 .legal-inner a {
   color: var(--blue);
+}
+
+/* ===========================================
+   Homepage v2 — Welcome / Why / Willa / Consulting
+   =========================================== */
+
+.hero {
+  padding: 40px 24px 40px;
+}
+
+
+.hero h1 {
+  font-size: clamp(48px, 7vw, 76px);
+  letter-spacing: -1.5px;
+}
+
+.hero-sub {
+  margin-top: 28px;
+  max-width: var(--measure);
+  font-size: 20px;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+/* One-line descriptor under a headline, not a paragraph */
+.hero-tagline {
+  margin-top: 16px;
+  color: var(--text-muted);
+}
+
+/* ---- Section shells ---- */
+.section-warm {
+  background: var(--bg-warm);
+}
+
+.section-cool {
+  background: var(--bg-cool);
+}
+
+/* Lets a marquee band sit flush against the section's bottom edge */
+.section-flush > .section-inner {
+  padding-bottom: 56px;
+}
+
+/* One heading system for every section, so no section outranks another by
+   accident. The coral full stop is the only accent; blue is for actions. */
+.section-h2 {
+  font-family: 'REM', sans-serif;
+  font-weight: 700;
+  font-size: clamp(26px, 3vw, 32px);
+  letter-spacing: -0.5px;
+  color: var(--text);
+  margin-bottom: 28px;
+}
+
+.section-h2::after,
+.work h2::after,
+.contact h2::after {
+  content: ".";
+  color: var(--coral);
+}
+
+/* ---- Body copy ---- */
+.prose {
+  max-width: var(--measure);
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--text);
+}
+
+.prose + .prose {
+  margin-top: 20px;
+}
+
+.prose-muted {
+  max-width: var(--measure);
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--text-muted);
+}
+
+/* Lineage note, not a headline — the description below it is the point */
+.lede {
+  max-width: var(--measure);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+/* Set apart by type and space rather than a rule */
+.pull-quote {
+  margin-top: 36px;
+  max-width: var(--measure);
+  font-family: 'REM', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.5;
+  letter-spacing: -0.3px;
+  color: var(--text);
+}
+
+/* ---- Buttons ---- */
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.btn {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  opacity: 0.85;
+}
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--text);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.btn-secondary:hover {
+  border-color: var(--blue);
+}
+
+/* ---- Marquee as a band inside a section ---- */
+.logo-marquee-band {
+  padding: 28px 0 40px;
+  border-top: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+
+/* The marquee is decorative; hold it still for motion-sensitive visitors */
+@media (prefers-reduced-motion: reduce) {
+  .logo-track {
+    animation: none;
+  }
+}
+
+/* The wordmark is a wide lockup (~8:1), so the nav swaps to the square icon
+   once the logo plus three links stop fitting on one row. */
+.nav-logo-icon {
+  display: none;
+  height: 28px;
+  width: auto;
+}
+
+/* Consulting: offerings on the left, headshot alongside */
+.work-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 48px;
+}
+
+.work-top-main {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 640px) {
+  /* Re-state the mobile hero padding: the desktop .hero rule above is later
+     in the file than the original mobile block, so it would otherwise win. */
+  .hero {
+    padding: 28px 24px;
+  }
+
+  .section-inner {
+    padding: 36px 24px;
+  }
+
+  .work-top {
+    flex-direction: column-reverse;
+    gap: 28px;
+  }
+
+  .nav-logo-img {
+    display: none;
+  }
+
+  .nav-logo-icon {
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+  }
+
+  .section-h2 {
+    font-size: 26px;
+  }
+
+  .prose,
+  .prose-muted {
+    font-size: 17px;
+  }
+
+  /* Keeps its step up over body copy now that the rule is gone */
+  .pull-quote {
+    font-size: 19px;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
+/* ===========================================
+   /willa
+   =========================================== */
+
+/* Heading utility: skip the full stop when the text already ends in punctuation */
+.no-stop::after {
+  content: none !important;
+}
+
+/* Prose pages (/willa) are a single text column. In the default 960px
+   container a 660px measure leaves 276px dead to the right and pushes the
+   column 126px left of optical centre, which reads as an unstyled document.
+   Sizing the container to the measure lets the column centre on the page. */
+.page-prose .section-inner,
+.page-prose .hero {
+  max-width: calc(var(--measure) + 48px);
+}
+
+.section-sub {
+  margin-top: -18px;
+  margin-bottom: 28px;
+  font-size: 17px;
+  color: var(--text-muted);
+}
+
+
+.lede-prose {
+  max-width: var(--measure);
+  font-size: 21px;
+  line-height: 1.55;
+  letter-spacing: -0.2px;
+  color: var(--text);
+  margin-bottom: 18px;
+}
+
+/* ---- Nav mark cross-fade ---- */
+.nav-logo-swap {
+  position: relative;
+}
+
+.nav-logo-swap .mark {
+  transition: opacity 0.28s ease;
+}
+
+/* Sits over the wordmark, which keeps its box so nothing shifts on swap.
+   The asset is a 1024px square whose glyph fills only ~57% of the canvas, so
+   it is set oversized to make the W read at roughly wordmark height. It is
+   absolutely positioned, so the extra size costs no layout.
+   The artwork also ships on an opaque cream ground rather than transparency;
+   multiply drops that ground into the white nav. Replacing the asset with a
+   transparent PNG or SVG would let both of these hacks go away. */
+.mark-willa {
+  position: absolute;
+  left: -9px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 48px;
+  width: 48px;
+  opacity: 0;
+  mix-blend-mode: multiply;
+}
+
+.nav.is-willa .mark-sl {
+  opacity: 0;
+}
+
+.nav.is-willa .mark-willa {
+  opacity: 1;
+}
+
+/* ---- How it works: numbered steps joined by a rail ---- */
+.steps {
+  counter-reset: step;
+  list-style: none;
+  max-width: var(--measure);
+}
+
+.steps li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 48px;
+  padding-bottom: 26px;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+.steps li:last-child {
+  padding-bottom: 0;
+}
+
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--coral);
+  /* Dark on orange: white on #e87211 is only 2.9:1 */
+  color: var(--text);
+  font-family: 'REM', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 30px;
+  text-align: center;
+}
+
+/* The rail connecting each step to the next */
+.steps li::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 36px;
+  bottom: 8px;
+  width: 2px;
+  background: rgba(232, 114, 17, 0.28);
+}
+
+.steps li:last-child::after {
+  display: none;
+}
+
+.steps strong {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 18px;
+}
+
+/* ---- Use cases ---- */
+/* Single column: at the prose measure each item fits on one line, which
+   scans far better than a two-up grid of two-line ragged items */
+.use-cases {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 13px;
+}
+
+.use-cases li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+.use-cases li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--coral);
+}
+
+/* ---- Testimonial, as its own section ---- */
+.quote-section {
+  background: var(--bg-cool);
+}
+
+.testimonial {
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* A serif sets the quote apart from the REM headings and Inter body without
+   loading a third webfont — Georgia is already on every machine. */
+.testimonial blockquote {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: 400;
+  /* 26px is the largest that fits on one line in the 912px container with
+     Georgia, but that leaves only 7% headroom, and Georgia is absent on most
+     Android and many Linux systems. 24px keeps the single line intact for a
+     substituted serif up to ~15% wider. */
+  font-size: clamp(19px, 1.9vw, 24px);
+  line-height: 1.35;
+  letter-spacing: -0.2px;
+  color: var(--text);
+  text-wrap: balance;
+}
+
+.testimonial blockquote::before {
+  content: "\201C";
+}
+
+.testimonial blockquote::after {
+  content: "\201D";
+}
+
+.testimonial figcaption {
+  margin-top: 16px;
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+/* ---- Definition lists: house rules, goals ---- */
+.rules {
+  max-width: var(--measure);
+}
+
+.rules dt {
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--text);
+  margin-top: 24px;
+}
+
+.rules dt:first-of-type {
+  margin-top: 0;
+}
+
+.rules dd {
+  margin-top: 5px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+/* ---- FAQ accordion ---- */
+.faq {
+  max-width: var(--measure);
+  border-top: 1px solid rgba(0, 0, 0, 0.09);
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+}
+
+.faq-item summary {
+  position: relative;
+  cursor: pointer;
+  list-style: none;
+  padding: 16px 36px 16px 0;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Chevron */
+.faq-item summary::after {
+  content: "";
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--text-muted);
+  border-bottom: 2px solid var(--text-muted);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.faq-item[open] summary::after {
+  transform: translateY(-25%) rotate(-135deg);
+}
+
+.faq-body {
+  padding: 0 0 20px;
+}
+
+.faq-body p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.faq-body p + p {
+  margin-top: 12px;
+}
+
+.faq-body a {
+  color: var(--blue);
+}
+
+/* ---- Closing CTA ---- */
+/* Cool, not warm: the FAQ above it is warm, and two touching bands of the
+   same tint erase the boundary between the two sections */
+.cta {
+  background: var(--bg-cool);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-logo-swap .mark,
+  .faq-item summary::after {
+    transition: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .use-cases {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .steps li,
+  .rules dd,
+  .use-cases li,
+  .faq-body p {
+    font-size: 16px;
+  }
+
+  .lede-prose {
+    font-size: 19px;
+  }
+}
+
+/* ---- /willa: scroll-reactive nav ---- */
+/* Past the hero the nav swaps wayfinding for conversion: the two text links
+   and "Get in touch" give way to the two CTAs. Deliberately NOT reusing .btn,
+   whose mobile rule sets width:100% and would blow out the nav row. */
+.nav-scrolled-only {
+  display: none;
+}
+
+.nav.is-willa .nav-top-only {
+  display: none;
+}
+
+.nav.is-willa .nav-scrolled-only {
+  display: inline-block;
+}
+
+.nav.is-willa .nav-links {
+  gap: 10px;
+}
+
+.nav-btn {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 9px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+
+.nav-btn-primary {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.nav-btn-primary:hover {
+  opacity: 0.85;
+}
+
+.nav-btn-secondary {
+  background: var(--white);
+  color: var(--text);
+  border: 1px solid rgba(0, 0, 0, 0.14);
+}
+
+.nav-btn-secondary:hover {
+  border-color: var(--blue);
+}
+
+/* ---- Hero: headline beside a sample thread ---- */
+/* The hero keeps the prose measure so the H1 lines up with every section
+   heading below it. Only the grid reaches right, into what was otherwise
+   dead gutter, via a negative margin. */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.hero-grid .sms {
+  max-width: 340px;
+}
+
+/* 1164px is where the centred measure plus the 252px overhang stops
+   overflowing the viewport; 1180 leaves a little slack. */
+@media (min-width: 1180px) {
+  /* The thread is taller than the copy, so the hero needs more room above
+     and below or the panel crowds the nav. Scoped to .page-prose so the
+     other pages keep their tightened spacing. */
+  .page-prose .hero {
+    padding-top: 64px;
+    padding-bottom: 64px;
+    /* Wider than the prose measure, and centred rather than overhanging to
+       the right, so the masthead reads as centred on the page. Same total
+       width as the old measure-plus-overhang, just balanced. */
+    max-width: calc(var(--measure) + 48px + 252px);
+  }
+
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr) 296px;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .hero-grid .sms {
+    max-width: none;
+  }
+}
+
+.sms {
+  margin: 0;
+}
+
+.sms-screen {
+  background: var(--white);
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  border-radius: 18px;
+  padding: 16px 14px 14px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
+}
+
+.sms-day {
+  margin-bottom: 14px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.bubble {
+  max-width: 92%;
+  margin-bottom: 8px;
+  padding: 10px 13px;
+  border-radius: 16px;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.bubble-in {
+  background: #eef1f4;
+  color: var(--text);
+  border-bottom-left-radius: 5px;
+}
+
+/* Darker than --blue so white text clears 4.5:1 (this one measures 4.94:1) */
+.bubble-out {
+  width: fit-content;
+  margin-left: auto;
+  background: #1a72c4;
+  color: var(--white);
+  font-weight: 600;
+  border-bottom-right-radius: 5px;
+}
+
+
+@media (max-width: 860px) {
+  .how-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .sms {
+    max-width: 340px;
+  }
+}
+
+/* ---- House rules: three across ---- */
+/* Each dt/dd pair is wrapped in a div so the grid tracks whole rules rather
+   than splitting terms from their descriptions. */
+.rules-grid {
+  counter-reset: rule;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+/* Each rule is its own card with its own index, so the three read as three
+   things rather than one block of text. Numbers instead of icons-in-circles,
+   which is the most recognisable AI-template shape. */
+.rule-card {
+  counter-increment: rule;
+  background: var(--bg-warm);
+  border-radius: 14px;
+  padding: 24px 24px 26px;
+}
+
+.rule-card::before {
+  content: counter(rule, decimal-leading-zero);
+  display: block;
+  margin-bottom: 14px;
+  font-family: 'REM', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  color: var(--coral);
+}
+
+
+.rules-grid dt {
+  margin-top: 0;
+}
+
+/* Three across only where there is room: at the prose measure alone the
+   columns come out ~196px, which is too narrow for the privacy rule.
+   Same overhang as the hero, so the heading stays aligned. */
+@media (min-width: 1180px) {
+  /* Three across inside the normal measure, so the heading and subheading
+     line up with every other section heading. Cards come out ~212px, so the
+     type steps down a notch to keep them readable at that width. */
+  /* The quote has no heading to misalign, so it can take a wider centred
+     container and land on one line */
+  #quote .section-inner {
+    max-width: calc(var(--measure) + 48px + 252px);
+  }
+
+  /* The carded row earns more air, but only where it is actually three
+     across. On mobile the cards stack and the extra height is dead space. */
+  #rules .section-inner {
+    padding-top: 64px;
+    padding-bottom: 68px;
+  }
+
+  .rules-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: none;
+  }
+
+  .rule-card {
+    padding: 22px 20px 24px;
+  }
+
+  .rules-grid dt {
+    font-size: 17px;
+  }
+
+  .rules-grid dd {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* Equal-height cards so the row reads as a set, not three ragged blocks */
+  .rules-grid {
+    align-items: stretch;
+  }
+
+  .rule-card {
+    padding: 28px 26px 30px;
+  }
+
+  .rules-grid dd {
+    font-size: 16px;
+  }
+}
+
+/* ---- Mission: statistics and their citations ---- */
+.stats {
+  list-style: none;
+  max-width: var(--measure);
+  margin: 22px 0 26px;
+}
+
+.stats li {
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 12px;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+.stats li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--coral);
+}
+
+.stats strong {
+  font-weight: 600;
+}
+
+/* Footnote markers stay the colour of the surrounding text; the number alone
+   carries the meaning, so a coloured link would over-signal. */
+.stats sup a {
+  color: inherit;
+  text-decoration: none;
+  padding: 0 1px;
+}
+
+.stats sup a:hover,
+.stats sup a:focus-visible {
+  color: var(--blue);
+}
+
+.footnotes {
+  counter-reset: fn;
+  list-style: none;
+  max-width: var(--measure);
+  margin-top: 30px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.09);
+}
+
+/* Citations live in the page footer. Aligned to the footer's own 960px
+   container so they line up with the copyright line and footer links
+   rather than the narrower prose measure. */
+.footer-notes {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 26px 24px 0;
+}
+
+.footer-notes .footnotes {
+  max-width: none;
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.footnotes li {
+  counter-increment: fn;
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 7px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.footnotes li::before {
+  content: counter(fn) ".";
+  position: absolute;
+  left: 0;
+}
+
+.footnotes cite {
+  font-style: italic;
+}
+
+@media (max-width: 640px) {
+  .stats li {
+    font-size: 16px;
+  }
 }
