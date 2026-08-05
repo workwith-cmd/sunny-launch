@@ -1236,3 +1236,32 @@ body {
     max-width: 340px;
   }
 }
+
+/* ---- House rules: three across ---- */
+/* Each dt/dd pair is wrapped in a div so the grid tracks whole rules rather
+   than splitting terms from their descriptions. */
+.rules-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+.rules-grid dt {
+  margin-top: 0;
+}
+
+/* Three across only where there is room: at the prose measure alone the
+   columns come out ~196px, which is too narrow for the privacy rule.
+   Same overhang as the hero, so the heading stays aligned. */
+@media (min-width: 1180px) {
+  .rules-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+    max-width: none;
+    margin-right: -252px;
+  }
+
+  .rules-grid dd {
+    font-size: 16px;
+  }
+}
