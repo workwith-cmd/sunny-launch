@@ -1164,13 +1164,16 @@ body {
   .page-prose .hero {
     padding-top: 64px;
     padding-bottom: 64px;
+    /* Wider than the prose measure, and centred rather than overhanging to
+       the right, so the masthead reads as centred on the page. Same total
+       width as the old measure-plus-overhang, just balanced. */
+    max-width: calc(var(--measure) + 48px + 252px);
   }
 
   .hero-grid {
     grid-template-columns: minmax(0, 1fr) 296px;
     gap: 48px;
     align-items: center;
-    margin-right: -252px;
   }
 
   .hero-grid .sms {
@@ -1241,9 +1244,37 @@ body {
 /* Each dt/dd pair is wrapped in a div so the grid tracks whole rules rather
    than splitting terms from their descriptions. */
 .rules-grid {
+  counter-reset: rule;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 28px;
+  gap: 20px;
+}
+
+/* Each rule is its own card with its own index, so the three read as three
+   things rather than one block of text. Numbers instead of icons-in-circles,
+   which is the most recognisable AI-template shape. */
+.rule-card {
+  counter-increment: rule;
+  background: var(--bg-warm);
+  border-radius: 14px;
+  padding: 24px 24px 26px;
+}
+
+.rule-card::before {
+  content: counter(rule, decimal-leading-zero);
+  display: block;
+  margin-bottom: 14px;
+  font-family: 'REM', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  color: var(--coral);
+}
+
+/* The section carries the page's only carded row, so it earns more air */
+#rules .section-inner {
+  padding-top: 64px;
+  padding-bottom: 68px;
 }
 
 .rules-grid dt {
@@ -1254,11 +1285,27 @@ body {
    columns come out ~196px, which is too narrow for the privacy rule.
    Same overhang as the hero, so the heading stays aligned. */
 @media (min-width: 1180px) {
+  /* Same treatment as the hero: a wider, centred container. At the plain
+     prose measure the three cards come out 209px, which wraps the third
+     card's title and runs the bodies six ragged lines. The cost is that
+     this heading sits further left than the prose-section headings. */
+  #rules .section-inner {
+    max-width: calc(var(--measure) + 48px + 252px);
+  }
+
   .rules-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 36px;
+    gap: 20px;
     max-width: none;
-    margin-right: -252px;
+  }
+
+  /* Equal-height cards so the row reads as a set, not three ragged blocks */
+  .rules-grid {
+    align-items: stretch;
+  }
+
+  .rule-card {
+    padding: 28px 26px 30px;
   }
 
   .rules-grid dd {
