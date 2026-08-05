@@ -801,7 +801,8 @@ body {
   height: 30px;
   border-radius: 50%;
   background: var(--coral);
-  color: var(--white);
+  /* Dark on orange, not white: white on #f27822 is only 2.8:1 */
+  color: var(--text);
   font-family: 'REM', sans-serif;
   font-weight: 700;
   font-size: 15px;
@@ -869,8 +870,8 @@ body {
 }
 
 .tag-building {
-  background: #fdeae4;
-  color: #a63c1e;
+  background: #fdeedd;
+  color: #9a4a0d;
 }
 
 .tag-planned {
