@@ -953,7 +953,9 @@ body {
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(21px, 2.4vw, 30px);
+  /* 26px is the largest that keeps the quote on one line in the 912px
+     container at desktop widths; measured, not guessed */
+  font-size: clamp(19px, 2.05vw, 26px);
   line-height: 1.35;
   letter-spacing: -0.2px;
   color: var(--text);
