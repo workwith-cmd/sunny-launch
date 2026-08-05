@@ -1379,7 +1379,6 @@ body {
   color: var(--blue);
 }
 
-/* Citations sit with the claim they support, not in the site footer */
 .footnotes {
   counter-reset: fn;
   list-style: none;
@@ -1387,6 +1386,22 @@ body {
   margin-top: 30px;
   padding-top: 16px;
   border-top: 1px solid rgba(0, 0, 0, 0.09);
+}
+
+/* Citations live in the page footer. Aligned to the footer's own 960px
+   container so they line up with the copyright line and footer links
+   rather than the narrower prose measure. */
+.footer-notes {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 26px 24px 0;
+}
+
+.footer-notes .footnotes {
+  max-width: none;
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
 }
 
 .footnotes li {
