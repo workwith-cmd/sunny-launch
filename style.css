@@ -5,7 +5,8 @@
 
 :root {
   /* Brand colors */
-  --coral: #ed6244;
+  /* Sampled from assets/logo.png — the rocket is a flat #f27822 */
+  --coral: #f27822;
   --blue: #38a1ff;
   --navy: #002f89;
   --bg: #f8f9fb;
