@@ -5,12 +5,8 @@
 
 :root {
   /* Brand colors */
-  /* Logo rocket is a flat #f27822; nudged darker so coral text clears the
-     WCAG AA large-text bar of 3:1 on white (#f27822 was 2.81:1) */
-  --coral: #e87211;
-  /* One notch darker, for coral text sitting on the tinted section
-     backgrounds where --coral lands at 2.85–2.90:1 */
-  --coral-deep: #e06a15;
+  /* Sampled from assets/logo.png — the rocket is a flat #f27822 */
+  --coral: #f27822;
   --blue: #38a1ff;
   --navy: #002f89;
   --bg: #f8f9fb;
@@ -94,11 +90,11 @@ body {
 
 /* Nav and footer links were 22–24px tall. Padding lifts the tap target to
    44px without moving anything visually. */
-.nav-links a:not(.nav-cta) {
+.nav-links a:not(.nav-cta):not(.nav-btn) {
   padding: 10px 0;
 }
 
-.nav-links a:hover {
+.nav-links a:not(.nav-btn):hover {
   color: var(--blue);
 }
 
@@ -316,7 +312,7 @@ body {
 
 .proof-points h3::after {
   content: ".";
-  color: var(--coral-deep);
+  color: var(--coral);
 }
 
 .proof-points ul {
@@ -496,7 +492,7 @@ body {
   font-weight: 900;
   font-size: 36px;
   /* Sits on --bg-warm, so it needs the deeper coral */
-  color: var(--coral-deep);
+  color: var(--coral);
   margin-bottom: 8px;
 }
 
@@ -615,7 +611,7 @@ body {
 .work h2::after,
 .contact h2::after {
   content: ".";
-  color: var(--coral-deep);
+  color: var(--coral);
 }
 
 /* ---- Body copy ---- */
@@ -1099,5 +1095,148 @@ body {
 
   .lede-prose {
     font-size: 19px;
+  }
+}
+
+/* ---- /willa: scroll-reactive nav ---- */
+/* Past the hero the nav swaps wayfinding for conversion: the two text links
+   and "Get in touch" give way to the two CTAs. Deliberately NOT reusing .btn,
+   whose mobile rule sets width:100% and would blow out the nav row. */
+.nav-scrolled-only {
+  display: none;
+}
+
+.nav.is-willa .nav-top-only {
+  display: none;
+}
+
+.nav.is-willa .nav-scrolled-only {
+  display: inline-block;
+}
+
+.nav.is-willa .nav-links {
+  gap: 10px;
+}
+
+.nav-btn {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 9px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+
+.nav-btn-primary {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.nav-btn-primary:hover {
+  opacity: 0.85;
+}
+
+.nav-btn-secondary {
+  background: var(--white);
+  color: var(--text);
+  border: 1px solid rgba(0, 0, 0, 0.14);
+}
+
+.nav-btn-secondary:hover {
+  border-color: var(--blue);
+}
+
+/* ---- How it works: steps beside a sample thread ---- */
+/* The container stays at the prose measure so this heading lines up with
+   every other section heading. Only the grid reaches right, into what was
+   otherwise dead gutter, via a negative margin. */
+.how-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.how-grid .sms {
+  max-width: 340px;
+}
+
+/* 1164px is where the centred measure plus the 252px overhang stops
+   overflowing the viewport; 1180 leaves a little slack. */
+@media (min-width: 1180px) {
+  .how-grid {
+    grid-template-columns: minmax(0, 1fr) 296px;
+    gap: 40px;
+    align-items: start;
+    margin-right: -252px;
+  }
+
+  .how-grid .sms {
+    max-width: none;
+  }
+}
+
+.sms {
+  margin: 0;
+}
+
+.sms-screen {
+  background: var(--white);
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  border-radius: 18px;
+  padding: 16px 14px 14px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
+}
+
+.sms-day {
+  margin-bottom: 14px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.bubble {
+  max-width: 92%;
+  margin-bottom: 8px;
+  padding: 10px 13px;
+  border-radius: 16px;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.bubble-in {
+  background: #eef1f4;
+  color: var(--text);
+  border-bottom-left-radius: 5px;
+}
+
+/* Darker than --blue so white text clears 4.5:1 (this one measures 4.94:1) */
+.bubble-out {
+  width: fit-content;
+  margin-left: auto;
+  background: #1a72c4;
+  color: var(--white);
+  font-weight: 600;
+  border-bottom-right-radius: 5px;
+}
+
+.sms figcaption {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+@media (max-width: 860px) {
+  .how-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .sms {
+    max-width: 340px;
   }
 }
