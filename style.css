@@ -18,7 +18,9 @@
   --bg-cool: #f4f7fa;
   --white: #ffffff;
   --text: #0a0a0a;
-  --text-muted: #737373;
+  /* #737373 measured 4.41–4.48:1 on the tinted bands, just under the 4.5:1
+     AA floor, and large blocks of it read washed out */
+  --text-muted: #6b6b6b;
   --text-nav: #404040;
   --border-subtle: rgba(0, 0, 0, 0.05);
 
@@ -90,6 +92,12 @@ body {
   transition: color 0.2s;
 }
 
+/* Nav and footer links were 22–24px tall. Padding lifts the tap target to
+   44px without moving anything visually. */
+.nav-links a:not(.nav-cta) {
+  padding: 10px 0;
+}
+
 .nav-links a:hover {
   color: var(--blue);
 }
@@ -97,7 +105,7 @@ body {
 .nav-cta {
   background: var(--blue) !important;
   color: var(--white) !important;
-  padding: 8px 18px !important;
+  padding: 10px 18px !important;
   border-radius: 8px;
   transition: opacity 0.2s !important;
 }
@@ -406,6 +414,7 @@ body {
   color: var(--text-muted);
   text-decoration: none;
   transition: color 0.2s;
+  padding: 11px 0;
 }
 
 .footer-links a:hover {
@@ -779,6 +788,15 @@ body {
   content: none !important;
 }
 
+/* Prose pages (/willa) are a single text column. In the default 960px
+   container a 660px measure leaves 276px dead to the right and pushes the
+   column 126px left of optical centre, which reads as an unstyled document.
+   Sizing the container to the measure lets the column centre on the page. */
+.page-prose .section-inner,
+.page-prose .hero {
+  max-width: calc(var(--measure) + 48px);
+}
+
 .section-sub {
   margin-top: -18px;
   margin-bottom: 28px;
@@ -901,11 +919,13 @@ body {
 }
 
 /* ---- Use cases ---- */
+/* Single column: at the prose measure each item fits on one line, which
+   scans far better than a two-up grid of two-line ragged items */
 .use-cases {
   list-style: none;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px 40px;
+  grid-template-columns: 1fr;
+  gap: 13px;
 }
 
 .use-cases li {
@@ -1051,8 +1071,10 @@ body {
 }
 
 /* ---- Closing CTA ---- */
+/* Cool, not warm: the FAQ above it is warm, and two touching bands of the
+   same tint erase the boundary between the two sections */
 .cta {
-  background: var(--bg-warm);
+  background: var(--bg-cool);
 }
 
 @media (prefers-reduced-motion: reduce) {
