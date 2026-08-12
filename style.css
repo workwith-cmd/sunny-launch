@@ -1495,10 +1495,11 @@ body {
 /* ---- Thread panel ---- */
 /* The willa.family card paints its own surface, radius and shadow, so
    .sms-screen is deliberately not applied and this rule only sizes it.
-   360px is the width the card was drawn at; below the two-column
-   breakpoint it centres under the copy. */
+   300px keeps the bubbles at a phone's line length: wider and the thread
+   reads as a wide graphic rather than something lifted off a screen.
+   Below the two-column breakpoint it centres under the copy. */
 .hero-showcase .sms {
-  max-width: 360px;
+  max-width: 300px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -1509,16 +1510,25 @@ body {
      and .footer-inner all share, so the showcase lines up with the nav
      above it and the footer below it. */
 
-  /* 960px less the 24px gutters leaves 912px: a 360px panel plus a 56px
-     gap puts the copy column at 496px, which holds the bullets cleanly. */
+  /* 960px less the 24px gutters leaves 912px: a 300px panel plus a 56px
+     gap puts the copy column at 556px, which holds the bullets cleanly. */
   .hero-showcase .hero-grid {
-    grid-template-columns: minmax(0, 1fr) 360px;
+    grid-template-columns: minmax(0, 1fr) 300px;
     gap: 56px;
     align-items: start;
   }
 
+  /* The panel starts level with the sub, so the headline gets the top of
+     the hero to itself instead of being flanked by the thread.
+
+     156px is the eyebrow block plus the headline: 31px badge + 18px margin
+     + 87px h1 + 20px margin. It is a fixed number because it can be — from
+     1180px up the container is pinned at 960px, so the copy column is
+     always 556px and "Project Willa" cannot rewrap to a second line. If
+     the headline text or its size changes, remeasure this. */
   .hero-showcase .sms {
-    max-width: 360px;
+    max-width: 300px;
+    margin-top: 156px;
     margin-left: 0;
     margin-right: 0;
   }
