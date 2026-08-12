@@ -1429,3 +1429,120 @@ body {
     font-size: 16px;
   }
 }
+
+/* ===========================================
+   Project Willa: showcase page
+   Append to the end of style.css.
+
+   Everything is scoped to .hero-showcase, so the homepage and the
+   consulting hero keep the spacing they have today. Nothing above
+   this point in the file changes.
+   =========================================== */
+
+/* Status badge above the headline. The tint is coral at 10%, and the
+   text is coral darkened to #a34a09 so it clears 4.5:1 against it. */
+.hero-showcase .eyebrow {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 5px 13px;
+  border-radius: 999px;
+  background: rgba(242, 120, 34, 0.1);
+  color: #a34a09;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.hero-showcase .hero-sub {
+  margin-top: 20px;
+}
+
+/* ---- Labelled bullets ---- */
+/* The label sits on its own line and the detail drops to muted, so the
+   five categories can be scanned without reading through them. */
+.hero-showcase .use-cases {
+  margin-top: 32px;
+  gap: 20px;
+  max-width: var(--measure);
+}
+
+.hero-showcase .use-cases li {
+  padding-left: 24px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* The dot is set against the label's cap height, not the detail text. */
+.hero-showcase .use-cases li::before {
+  top: 8px;
+}
+
+.hero-showcase .use-cases strong {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* The buttons now sit directly under the last bullet, so they carry the
+   full gap themselves rather than inheriting spacing from a closing line. */
+.hero-showcase .btn-row {
+  margin-top: 34px;
+}
+
+/* ---- Thread panel ---- */
+/* The willa.family card paints its own surface, radius and shadow, so
+   .sms-screen is deliberately not applied and this rule only sizes it.
+   360px is the width the card was drawn at; below the two-column
+   breakpoint it centres under the copy. */
+.hero-showcase .sms {
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 1180px) {
+  /* No max-width override here on purpose. The existing .page-prose .hero
+     rule already sets 960px, which is the width .nav-inner, .section-inner
+     and .footer-inner all share, so the showcase lines up with the nav
+     above it and the footer below it. */
+
+  /* 960px less the 24px gutters leaves 912px: a 360px panel plus a 56px
+     gap puts the copy column at 496px, which holds the bullets cleanly. */
+  .hero-showcase .hero-grid {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 56px;
+    align-items: start;
+  }
+
+  .hero-showcase .sms {
+    max-width: 360px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-showcase .use-cases {
+    gap: 16px;
+  }
+
+  .hero-showcase .use-cases strong {
+    font-size: 16px;
+  }
+
+  /* Body copy stays at 16px on mobile. The label still reads as a label
+     because it keeps its own weight and colour, not because it's larger. */
+  .hero-showcase .use-cases li {
+    font-size: 16px;
+  }
+
+  /* The nav CTA matches the primary button on desktop. On mobile the verb
+     drops to "Willa.Family", the same width as the "Get in touch" CTA the
+     other pages already ship, which is all the nav row has room for. */
+  .nav-cta-verb {
+    display: none;
+  }
+}
