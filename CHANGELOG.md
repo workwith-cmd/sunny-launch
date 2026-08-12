@@ -8,7 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
-- `/willa/` is now a showcase page. It says what Project Willa is, who it's for, and what it helps with, then sends you to willa.family to actually get it. The old page told the whole story on sunnylaunch.com; the product now has its own home, so this page introduces it and gets out of the way.
+- [`/willa/`](https://www.sunnylaunch.com/willa/) is now a showcase page. It says what Project Willa is, who it's for, and what it helps with, then sends you to willa.family to actually get it. The old page told the whole story on sunnylaunch.com; the product now has its own home, so this page introduces it and gets out of the way.
+- The hero gives the headline the top of the page to itself. The text-thread panel starts level with the sub instead of running the full height of "Project Willa", and it's narrower, so it reads as something lifted off a phone rather than a wide graphic.
 - The Willa nav and footer link out to willa.family instead of pointing back at themselves. On narrow screens the nav button shortens to "Willa.Family" so it fits the row.
 - The nav on `/willa/` matches `/` and `/consulting/` again. It no longer swaps the Sunny Launch mark for the Willa mark as you scroll.
 
